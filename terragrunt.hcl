@@ -2,7 +2,7 @@ terraform {
     source = "tfr:///terraform-aws-modules/vpc/aws?version=3.5.0"
 
     // When you run plan, apply and refresh, please apply the var_files
-    // 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
+    
     extra_arguments "custom_vars" {
         commands = [
             "plan", 

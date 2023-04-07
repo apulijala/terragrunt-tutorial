@@ -5,33 +5,14 @@ terraform {
     source = "tfr:///terraform-aws-modules/vpc/aws?version=3.5.0"
 
     extra_arguments "custom_vars" {
-
         commands = [
             "plan", 
             "apply", 
             "destroy"
         ]
-
-        required_var_files = [
-            "${get_parent_terragrunt_dir()}/common.tfvars"
-        ]
      
     }
-
-    before_hook "run_before_checks" {
-        commands = [ "apply", "plan" ]
-        execute = ["echo", "Lets us execute before plan and apply hook !!"]
-    }
-
-    after_hook "run_after_checks" {
-        
-        commands = [ "apply", "plan" ]
-        execute = [ "echo", "Let us execute after apply and Plan Hook !!" ]
-    }
-
 }
-
-
 
 generate "my_provider" {
     
@@ -44,3 +25,17 @@ generate "my_provider" {
     EOF
 }
 
+inputs = {
+
+    name = "my-vpc"
+    cidr = "10.0.0.0/16"
+    azs = [ "eu-west-2a", "eu-west-2b", "eu-west-2c"]
+    private_subnets = [ "10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24" ]
+    public_subnets = [ "10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24" ]
+    tags = {
+        Terraform = "true",
+        Environment = "dev"
+
+    }
+    
+}
