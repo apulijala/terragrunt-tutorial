@@ -1,5 +1,6 @@
 terraform {
 
+    // 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
     source = "tfr:///terraform-aws-modules/vpc/aws?version=3.5.0"
     extra_arguments "custom_vars" {
         commands = [
