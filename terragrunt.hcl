@@ -7,7 +7,8 @@ terraform {
         commands = [
             "plan", 
             "apply", 
-            "refresh"
+            "refresh",
+            "destroy"
         ]
         required_var_files = ["${get_parent_terragrunt_dir()}/common.tfvars"]
     }
